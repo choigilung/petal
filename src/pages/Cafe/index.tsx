@@ -18,7 +18,7 @@ const Cafe = () => {
         <div className="space-image-placeholder" />
         <div className="space-text">
           <p className="space-label">OUR SPACE</p>
-          <h2 className="space-title">따뜻한 공간에서<br />즐기는 한 잔</h2>
+          <h2 className="space-title">꽃향기 가득한 곳에서<br />즐기는 한 잔</h2>
           <p className="space-desc">
             페탈 옹트라쎄는 1층 플라워샵과 2층 카페로 이루어진
             복합 문화 공간입니다.
