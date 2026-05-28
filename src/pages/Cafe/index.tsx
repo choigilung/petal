@@ -1,13 +1,32 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import './Cafe.css';
 import cafeHero from '../../assets/cafe/outside1.jpg';
 import cafeSpace from '../../assets/cafe/space_1.jpg';
-import menuDrip from '../../assets/cafe/menu/drip/drip1.jpg';
-import menuBlend from '../../assets/cafe/menu/blend/blend1.png';
-import menuTea from '../../assets/cafe/menu/tea/tea1.jpg';
-import menuBeverage from '../../assets/cafe/menu/beverage/beverage1.jpg';
-import menuDessert from '../../assets/cafe/menu/dessert/dessert2.jpg';
+
+interface MenuItem {
+  id: string;
+  name: string;
+  category: string;
+  imageUrl: string;
+}
+
+const CATEGORIES = ['DRIP', 'BLEND', 'TEA', 'BEVERAGE', 'DESSERT'];
+
 const Cafe = () => {
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      const snapshot = await getDocs(collection(db, 'menu'));
+      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as MenuItem));
+      setMenuItems(data);
+    };
+    fetchMenu();
+  }, []);
+
   return (
     <main className="cafe">
       {/* 히어로 섹션 */}
@@ -38,18 +57,19 @@ const Cafe = () => {
         <p className="menu-label">OUR MENU</p>
         <h2 className="menu-title">MENU</h2>
         <div className="menu-grid">
-          {[
-            { name: 'DRIP', path: '/cafe/menu/drip', img: menuDrip },
-            { name: 'BLEND', path: '/cafe/menu/blend', img: menuBlend },
-            { name: 'TEA', path: '/cafe/menu/tea', img: menuTea },
-            { name: 'BEVERAGE', path: '/cafe/menu/beverage', img: menuBeverage },
-            { name: 'DESSERT', path: '/cafe/menu/dessert', img: menuDessert },
-           ].map((item) => (
-             <Link to={item.path} key={item.name} className="menu-item">
-               <img src={item.img} alt={item.name} className="menu-image" />
-               <p className="menu-name">{item.name}</p>
-             </Link>
-           ))}
+          {CATEGORIES.map((cat) => {
+            const item = menuItems.find((m) => m.category === cat);
+            return (
+              <Link to={`/cafe/menu/${cat.toLowerCase()}`} key={cat} className="menu-item">
+                {item ? (
+                  <img src={item.imageUrl} alt={cat} className="menu-image" />
+                ) : (
+                  <div className="menu-image-placeholder" />
+                )}
+                <p className="menu-name">{cat}</p>
+              </Link>
+            );
+          })}
         </div>
       </section>
     </main>

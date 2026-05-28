@@ -1,14 +1,29 @@
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import './Flower.css';
 import flowerHero from '../../assets/flower/flowerout1.jpg';
 import flowerSpace from '../../assets/flower/flower_space1.jpg';
-import flower1 from '../../assets/flowers/flower1.jpg';
-import flower2 from '../../assets/flowers/flower2.jpg';
-import flower3 from '../../assets/flowers/flower3.jpg';
-import flower4 from '../../assets/flowers/flower4.jpg';
-import flower5 from '../../assets/flowers/flower5.jpg';
-import flower6 from '../../assets/flowers/flower6.jpg';
+
+interface FlowerItem {
+  id: string;
+  name: string;
+  subName: string;
+  imageUrl: string;
+}
 
 const Flower = () => {
+  const [flowers, setFlowers] = useState<FlowerItem[]>([]);
+
+  useEffect(() => {
+    const fetchFlowers = async () => {
+      const snapshot = await getDocs(collection(db, 'flowers'));
+      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as FlowerItem));
+      setFlowers(data);
+    };
+    fetchFlowers();
+  }, []);
+
   return (
     <main className="flower">
       {/* 히어로 섹션 */}
@@ -39,18 +54,11 @@ const Flower = () => {
         <p className="flower-types-label">OUR FLOWERS</p>
         <h2 className="flower-types-title">FLOWERS</h2>
         <div className="flower-grid">
-          {[
-            { name: '장미', sub: 'Rose', img: flower1 },
-            { name: '튤립', sub: 'Tulip', img: flower2 },
-            { name: '수국', sub: 'Hydrangea', img: flower3 },
-            { name: '작약', sub: 'Peony', img: flower4 },
-            { name: '라넌큘러스', sub: 'Ranunculus', img: flower5 },
-            { name: '유칼립투스', sub: 'Eucalyptus', img: flower6 },
-          ].map((flower) => (
-            <div className="flower-item" key={flower.name}>
-              <img src={flower.img} alt={flower.name} className="flower-image" />
+          {flowers.map((flower) => (
+            <div className="flower-item" key={flower.id}>
+              <img src={flower.imageUrl} alt={flower.name} className="flower-image" />
               <p className="flower-name">{flower.name}</p>
-              <p className="flower-sub-name">{flower.sub}</p>
+              <p className="flower-sub-name">{flower.subName}</p>
             </div>
           ))}
         </div>
