@@ -8,25 +8,36 @@
   padding: 64px 48px;
 }
 
-.hero-image-placeholder {
+.hero-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #e8e2d9;
+  object-fit: cover;
   z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%);
+  z-index: 1;
 }
 
 .hero-text {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-sub {
   font-size: 12px;
   letter-spacing: 0.2em;
-  color: #1a1a1a;
+  color: #fff;
   margin-bottom: 16px;
 }
 
@@ -35,7 +46,7 @@
   font-weight: 300;
   letter-spacing: 0.05em;
   line-height: 1.1;
-  color: #1a1a1a;
+  color: #fff;
   margin-bottom: 24px;
 }
 
@@ -43,7 +54,7 @@
   font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.1em;
-  color: #1a1a1a;
+  color: #fff;
 }
 
 /* 공간 소개 섹션 */
@@ -53,8 +64,10 @@
   min-height: 600px;
 }
 
-.space-image-placeholder {
-  background-color: #e0d9cf;
+.space-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .space-text {
@@ -118,10 +131,10 @@
   gap: 16px;
 }
 
-.menu-image-placeholder {
+.menu-image {
   width: 100%;
   aspect-ratio: 3 / 4;
-  background-color: #e8e2d9;
+  object-fit: cover;
 }
 
 .menu-name {
@@ -144,10 +157,6 @@
     grid-template-columns: 1fr;
   }
 
-  .space-image-placeholder {
-    height: 300px;
-  }
-
   .space-text {
     padding: 48px 24px;
   }
@@ -166,25 +175,4 @@
   .menu-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-.hero-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-.space-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.menu-image {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
 }
