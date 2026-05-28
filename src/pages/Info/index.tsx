@@ -15,31 +15,46 @@ const Info = () => {
         <div className="info-details">
           {/* 전화번호 */}
           <div className="info-block">
-            <p className="info-block-label">PHONE</p>
-            <p className="info-block-value">051-000-0000</p>
+            <p className="info-block-label">TEL</p>
+            <p className="info-block-value">055-609-4448</p>
           </div>
 
           {/* 주소 */}
           <div className="info-block">
             <p className="info-block-label">ADDRESS</p>
-            <p className="info-block-value">부산광역시 OO구 OO로 OO</p>
+            <p className="info-block-value">경남 창원시 성산구 외동반림로254번길 34</p>
           </div>
 
           {/* 영업시간 */}
           <div className="info-block">
             <p className="info-block-label">HOURS</p>
             <p className="info-block-value">
-              MON — FRI　10:00 — 21:00<br />
-              SAT — SUN　10:00 — 22:00
+              TUE — SUN　10:30 — 22:00<br />
+              MON 정기휴무
             </p>
           </div>
 
           {/* SNS */}
           <div className="info-block">
             <p className="info-block-label">SNS</p>
-            <p className="info-block-value">@petal_entrecasse</p>
+            <a 
+              href="https://www.instagram.com/petales.cafe" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="info-block-link"
+            >
+              @petales.cafe
+            </a>
+            <a 
+              href="https://www.instagram.com/petales_entrelaces" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="info-block-link"
+            >
+              @petales_entrelaces
+            </a>
           </div>
-        </div>
+        </div>  
 
         {/* 카카오맵 */}
         <div className="info-map">
