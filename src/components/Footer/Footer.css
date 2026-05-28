@@ -111,3 +111,21 @@
     text-align: center;
   }
 }
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-admin {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #444;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer-admin:hover {
+  opacity: 0.5;
+}

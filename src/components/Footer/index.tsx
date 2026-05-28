@@ -35,7 +35,10 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p className="footer-copy">© 2024 PETAL ENTRECASSE. ALL RIGHTS RESERVED.</p>
-        <p className="footer-sns">@petal_entrecasse</p>
+        <div className="footer-bottom-right">
+          <p className="footer-sns">@petal_entrecasse</p>
+          <a href="/admin" className="footer-admin">ADMIN</a>
+        </div>
       </div>
     </footer>
   );
