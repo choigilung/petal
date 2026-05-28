@@ -1,0 +1,169 @@
+/* 히어로 섹션 */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 64px 48px;
+}
+
+.hero-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e8e2d9;
+  z-index: 0;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-sub {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: 72px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+}
+
+.hero-desc {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
+}
+
+/* 공간 소개 섹션 */
+.space {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+
+.space-image-placeholder {
+  background-color: #e0d9cf;
+}
+
+.space-text {
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.space-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #999;
+  margin-bottom: 24px;
+}
+
+.space-title {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.space-desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* 메뉴 섹션 */
+.menu-preview {
+  padding: 100px 48px;
+  text-align: center;
+}
+
+.menu-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.menu-title {
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  margin-bottom: 64px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-image-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: #e8e2d9;
+}
+
+.menu-name {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: #1a1a1a;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 24px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .space {
+    grid-template-columns: 1fr;
+  }
+
+  .space-image-placeholder {
+    height: 300px;
+  }
+
+  .space-text {
+    padding: 48px 24px;
+  }
+
+  .menu-preview {
+    padding: 64px 24px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
