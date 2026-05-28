@@ -1,16 +1,10 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 24px 48px;
-  background-color: #fff;
-  border-bottom: 1px solid #e0e0e0;
+  background-color: #faf8f5;
+  border-bottom: 1px solid #e8e2d9;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -18,7 +12,7 @@
 
 .navbar-logo a {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.15em;
   color: #1a1a1a;
   text-decoration: none;
@@ -32,7 +26,7 @@
 
 .navbar-menu li a {
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.1em;
   color: #1a1a1a;
   text-decoration: none;
