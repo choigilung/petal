@@ -1,0 +1,100 @@
+/* 헤더 */
+.crew-header {
+  padding: 100px 48px 64px;
+  border-bottom: 1px solid #e8e2d9;
+}
+
+.crew-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.crew-title {
+  font-size: 72px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.crew-desc {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #555;
+}
+
+/* 크루 그리드 */
+.crew-grid-section {
+  padding: 80px 48px;
+}
+
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.crew-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.crew-image-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: #e8e2d9;
+}
+
+.crew-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.crew-role {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #999;
+}
+
+.crew-name {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.crew-member-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .crew-header {
+    padding: 64px 24px 40px;
+  }
+
+  .crew-title {
+    font-size: 40px;
+  }
+
+  .crew-grid-section {
+    padding: 48px 24px;
+  }
+
+  .crew-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crew-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
