@@ -98,3 +98,15 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 400px);
+  gap: 32px;
+}
+
+.crew-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}

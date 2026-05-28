@@ -1,4 +1,5 @@
 import './Crew.css';
+import crew1 from '../../assets/crew/crew1.jpg';
 
 const Crew = () => {
   return (
@@ -14,13 +15,10 @@ const Crew = () => {
       <section className="crew-grid-section">
         <div className="crew-grid">
           {[
-            { name: '홍길동', role: 'Barista', desc: '커피를 사랑하는 바리스타' },
-            { name: '김철수', role: 'Florist', desc: '꽃으로 공간을 채우는 플로리스트' },
-            { name: '이영희', role: 'Manager', desc: '페탈을 이끌어가는 매니저' },
-            { name: '박지민', role: 'Barista', desc: '따뜻한 한 잔을 만드는 바리스타' },
+            { name: 'James', role: 'Barista', desc: '커피를 사랑하는 바리스타', img: crew1 },
           ].map((member) => (
             <div className="crew-item" key={member.name}>
-              <div className="crew-image-placeholder" />
+              <img src={member.img} alt={member.name} className="crew-image" />
               <div className="crew-info">
                 <p className="crew-role">{member.role}</p>
                 <h2 className="crew-name">{member.name}</h2>
