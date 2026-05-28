@@ -85,7 +85,9 @@
     border-bottom: 1px solid #e8e2d9;
   }
 
-  .info-map-placeholder {
+  .info-map {
+    width: 100%;
     height: 400px;
+    min-height: 600px;
   }
 }

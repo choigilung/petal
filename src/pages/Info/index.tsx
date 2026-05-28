@@ -1,4 +1,5 @@
 import './Info.css';
+import KakaoMap from './KakaoMap';
 
 const Info = () => {
   return (
@@ -40,9 +41,9 @@ const Info = () => {
           </div>
         </div>
 
-        {/* 지도 플레이스홀더 */}
-        <div className="info-map-placeholder">
-          <p className="info-map-text">지도가 들어올 자리</p>
+        {/* 카카오맵 */}
+        <div className="info-map">
+          <KakaoMap />
         </div>
       </section>
     </main>
