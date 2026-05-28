@@ -1,0 +1,84 @@
+.dashboard {
+  min-height: 100vh;
+  padding: 64px 48px;
+  background-color: #faf8f5;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 64px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e8e2d9;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.dashboard-logout {
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dashboard-logout:hover {
+  background-color: #1a1a1a;
+  color: #faf8f5;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.dashboard-card {
+  padding: 48px;
+  border: 1px solid #e8e2d9;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-card:hover {
+  border-color: #1a1a1a;
+}
+
+.dashboard-card-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #999;
+}
+
+.dashboard-card-title {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.dashboard-card-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 40px 24px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

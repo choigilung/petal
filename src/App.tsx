@@ -12,7 +12,8 @@ import Blend from './pages/Cafe/Menu/Blend';
 import Tea from './pages/Cafe/Menu/Tea';
 import Beverage from './pages/Cafe/Menu/Beverage';
 import Dessert from './pages/Cafe/Menu/Dessert';
-
+import Admin from './pages/Admin';
+import Dashboard from './pages/Admin/Dashboard';
 const App = () => {
   return (
     <BrowserRouter>
@@ -30,6 +31,8 @@ const App = () => {
         <Route path="/info" element={<Info />} />
         <Route path="/crew" element={<Crew />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />
     </BrowserRouter>
