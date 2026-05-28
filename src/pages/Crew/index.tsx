@@ -1,7 +1,28 @@
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import './Crew.css';
-import crew1 from '../../assets/crew/crew1.jpg';
+
+interface CrewItem {
+  id: string;
+  name: string;
+  role: string;
+  desc: string;
+  imageUrl: string;
+}
 
 const Crew = () => {
+  const [crew, setCrew] = useState<CrewItem[]>([]);
+
+  useEffect(() => {
+    const fetchCrew = async () => {
+      const snapshot = await getDocs(collection(db, 'crew'));
+      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as CrewItem));
+      setCrew(data);
+    };
+    fetchCrew();
+  }, []);
+
   return (
     <main className="crew">
       {/* 헤더 */}
@@ -14,11 +35,9 @@ const Crew = () => {
       {/* 크루 그리드 */}
       <section className="crew-grid-section">
         <div className="crew-grid">
-          {[
-            { name: 'James', role: 'Barista', desc: '커피를 사랑하는 바리스타', img: crew1 },
-          ].map((member) => (
-            <div className="crew-item" key={member.name}>
-              <img src={member.img} alt={member.name} className="crew-image" />
+          {crew.map((member) => (
+            <div className="crew-item" key={member.id}>
+              <img src={member.imageUrl} alt={member.name} className="crew-image" />
               <div className="crew-info">
                 <p className="crew-role">{member.role}</p>
                 <h2 className="crew-name">{member.name}</h2>
