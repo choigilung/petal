@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Cafe.css';
 
 const Cafe = () => {
@@ -18,7 +19,7 @@ const Cafe = () => {
         <div className="space-image-placeholder" />
         <div className="space-text">
           <p className="space-label">OUR SPACE</p>
-          <h2 className="space-title">꽃향기 가득한 곳에서<br />즐기는 한 잔</h2>
+          <h2 className="space-title">꽃향기 가득한<br />2층 카페</h2>
           <p className="space-desc">
             페탈 옹트라쎄는 1층 플라워샵과 2층 카페로 이루어진
             복합 문화 공간입니다.
@@ -31,11 +32,17 @@ const Cafe = () => {
         <p className="menu-label">OUR MENU</p>
         <h2 className="menu-title">MENU</h2>
         <div className="menu-grid">
-          {['DRIP', 'BLEND', 'TEA', 'BEVERAGE', 'DESSERT'].map((item) => (
-            <div className="menu-item" key={item}>
+          {[
+            { name: 'DRIP', path: '/cafe/menu/drip' },
+            { name: 'BLEND', path: '/cafe/menu/blend' },
+            { name: 'TEA', path: '/cafe/menu/tea' },
+            { name: 'BEVERAGE', path: '/cafe/menu/beverage' },
+            { name: 'DESSERT', path: '/cafe/menu/dessert' },
+          ].map((item) => (
+            <Link to={item.path} key={item.name} className="menu-item">
               <div className="menu-image-placeholder" />
-              <p className="menu-name">{item}</p>
-            </div>
+              <p className="menu-name">{item.name}</p>
+            </Link>
           ))}
         </div>
       </section>

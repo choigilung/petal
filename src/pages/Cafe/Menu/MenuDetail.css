@@ -1,0 +1,101 @@
+/* 헤더 */
+.menu-detail-header {
+  padding: 64px 48px 48px;
+  border-bottom: 1px solid #e8e2d9;
+}
+
+.back-btn {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: #999;
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: opacity 0.2s;
+}
+
+.back-btn:hover {
+  opacity: 0.5;
+}
+
+.menu-detail-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.menu-detail-title {
+  font-size: 56px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+/* 메뉴 리스트 */
+.menu-detail-list {
+  padding: 64px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.menu-detail-item {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #e8e2d9;
+}
+
+.menu-detail-image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #e8e2d9;
+}
+
+.menu-detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.menu-detail-name {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.menu-detail-desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #555;
+}
+
+.menu-detail-price {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .menu-detail-header {
+    padding: 40px 24px 32px;
+  }
+
+  .menu-detail-title {
+    font-size: 36px;
+  }
+
+  .menu-detail-list {
+    padding: 40px 24px;
+  }
+
+  .menu-detail-item {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
