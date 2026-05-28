@@ -1,11 +1,19 @@
 import './Flower.css';
+import flowerHero from '../../assets/flower/flowerout1.jpg';
+import flowerSpace from '../../assets/flower/flower_space1.jpg';
+import flower1 from '../../assets/flowers/flower1.jpg';
+import flower2 from '../../assets/flowers/flower2.jpg';
+import flower3 from '../../assets/flowers/flower3.jpg';
+import flower4 from '../../assets/flowers/flower4.jpg';
+import flower5 from '../../assets/flowers/flower5.jpg';
+import flower6 from '../../assets/flowers/flower6.jpg';
 
 const Flower = () => {
   return (
     <main className="flower">
       {/* 히어로 섹션 */}
       <section className="flower-hero">
-        <div className="flower-hero-image-placeholder" />
+        <img src={flowerHero} alt="플라워샵 외관" className="flower-hero-image" />
         <div className="flower-hero-text">
           <p className="flower-hero-sub">1F FLOWER</p>
           <h1 className="flower-hero-title">PETAL<br />FLOWER</h1>
@@ -23,7 +31,7 @@ const Flower = () => {
             계절마다 바뀌는 다양한 꽃들을 만나보세요.
           </p>
         </div>
-        <div className="flower-space-image-placeholder" />
+        <img src={flowerSpace} alt="플라워샵 공간" className="flower-space-image" />
       </section>
 
       {/* 꽃 종류 섹션 */}
@@ -32,15 +40,15 @@ const Flower = () => {
         <h2 className="flower-types-title">FLOWERS</h2>
         <div className="flower-grid">
           {[
-            { name: '장미', sub: 'Rose' },
-            { name: '튤립', sub: 'Tulip' },
-            { name: '수국', sub: 'Hydrangea' },
-            { name: '작약', sub: 'Peony' },
-            { name: '라넌큘러스', sub: 'Ranunculus' },
-            { name: '유칼립투스', sub: 'Eucalyptus' },
+            { name: '장미', sub: 'Rose', img: flower1 },
+            { name: '튤립', sub: 'Tulip', img: flower2 },
+            { name: '수국', sub: 'Hydrangea', img: flower3 },
+            { name: '작약', sub: 'Peony', img: flower4 },
+            { name: '라넌큘러스', sub: 'Ranunculus', img: flower5 },
+            { name: '유칼립투스', sub: 'Eucalyptus', img: flower6 },
           ].map((flower) => (
             <div className="flower-item" key={flower.name}>
-              <div className="flower-image-placeholder" />
+              <img src={flower.img} alt={flower.name} className="flower-image" />
               <p className="flower-name">{flower.name}</p>
               <p className="flower-sub-name">{flower.sub}</p>
             </div>
