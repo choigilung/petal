@@ -12,8 +12,11 @@ interface FlowerItem {
   imageUrl: string;
 }
 
+const ITEMS_PER_PAGE = 6;
+
 const Flower = () => {
   const [flowers, setFlowers] = useState<FlowerItem[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchFlowers = async () => {
@@ -23,6 +26,12 @@ const Flower = () => {
     };
     fetchFlowers();
   }, []);
+
+  const totalPages = Math.ceil(flowers.length / ITEMS_PER_PAGE);
+  const currentFlowers = flowers.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
     <main className="flower">
@@ -54,7 +63,7 @@ const Flower = () => {
         <p className="flower-types-label">OUR FLOWERS</p>
         <h2 className="flower-types-title">FLOWERS</h2>
         <div className="flower-grid">
-          {flowers.map((flower) => (
+          {currentFlowers.map((flower) => (
             <div className="flower-item" key={flower.id}>
               <img src={flower.imageUrl} alt={flower.name} className="flower-image" />
               <p className="flower-name">{flower.name}</p>
@@ -62,6 +71,35 @@ const Flower = () => {
             </div>
           ))}
         </div>
+
+        {/* 페이지네이션 */}
+        {totalPages > 1 && (
+          <div className="pagination">
+            <button
+              className="pagination-btn"
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              ←
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                className={`pagination-btn ${currentPage === page ? 'active' : ''}`}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              className="pagination-btn"
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              →
+            </button>
+          </div>
+        )}
       </section>
     </main>
   );
