@@ -1,11 +1,14 @@
 import './Coffee.css';
+import coffeeHero from '../../assets/coffee/coffeehero1.jpg';
+import coffeeMonth from '../../assets/coffee/coffeemonth.png';
+import coffee1 from '../../assets/coffee/coffee1.jpg';
 
 const Coffee = () => {
   return (
     <main className="coffee">
       {/* 히어로 섹션 */}
       <section className="coffee-hero">
-        <div className="coffee-hero-image-placeholder" />
+        <img src={coffeeHero} alt="커피" className="coffee-hero-image" />
         <div className="coffee-hero-text">
           <p className="coffee-hero-sub">COFFEE</p>
           <h1 className="coffee-hero-title">OUR<br />COFFEE</h1>
@@ -15,7 +18,7 @@ const Coffee = () => {
 
       {/* 이달의 커피 섹션 */}
       <section className="coffee-monthly">
-        <div className="coffee-monthly-image-placeholder" />
+        <img src={coffeeMonth} alt="이달의 커피" className="coffee-monthly-image" />
         <div className="coffee-monthly-text">
           <p className="coffee-monthly-label">THIS MONTH</p>
           <h2 className="coffee-monthly-title">이달의 커피</h2>
@@ -41,7 +44,7 @@ const Coffee = () => {
             { name: 'Kenya', region: 'Kirinyaga', flavor: '블랙커런트 · 자두 · 와인같은' },
           ].map((bean) => (
             <div className="coffee-bean-item" key={bean.name}>
-              <div className="coffee-bean-image-placeholder" />
+              <img src={coffee1} alt={bean.name} className="coffee-bean-image" />
               <div className="coffee-bean-info">
                 <p className="coffee-bean-region">{bean.region}</p>
                 <h3 className="coffee-bean-name">{bean.name}</h3>

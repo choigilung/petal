@@ -6,7 +6,7 @@ import menuDrip from '../../assets/cafe/menu/drip/drip1.jpg';
 import menuBlend from '../../assets/cafe/menu/blend/blend1.png';
 import menuTea from '../../assets/cafe/menu/tea/tea1.jpg';
 import menuBeverage from '../../assets/cafe/menu/beverage/beverage1.jpg';
-import menuDessert from '../../assets/cafe/menu/dessert/dessert1.jpg';
+import menuDessert from '../../assets/cafe/menu/dessert/dessert2.jpg';
 const Cafe = () => {
   return (
     <main className="cafe">
