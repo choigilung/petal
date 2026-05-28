@@ -15,6 +15,7 @@ import Dessert from './pages/Cafe/Menu/Dessert';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Admin/Dashboard';
 import MenuManage from './pages/Admin/MenuManage';
+import FlowerManage from './pages/Admin/FlowerManage';
 const App = () => {
   return (
     <BrowserRouter>
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/menu" element={<MenuManage />} />
+        <Route path="/admin/flower" element={<FlowerManage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
