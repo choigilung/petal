@@ -31,53 +31,81 @@
   letter-spacing: 0.05em;
 }
 
-/* 메뉴 리스트 */
+/* 메뉴 그리드 */
 .menu-detail-list {
   padding: 64px 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+}
+
+.empty-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: #999;
+  letter-spacing: 0.05em;
+}
+
+.menu-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
 
 .menu-detail-item {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid #e8e2d9;
-}
-
-.menu-detail-image-placeholder {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background-color: #e8e2d9;
-}
-
-.menu-detail-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   gap: 16px;
 }
 
-.menu-detail-name {
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+.menu-detail-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
-.menu-detail-desc {
+.menu-detail-name {
   font-size: 14px;
   font-weight: 300;
-  line-height: 1.8;
-  color: #555;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
 }
 
-.menu-detail-price {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+/* 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 64px;
+}
+
+.pagination-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid #e8e2d9;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
   color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination-btn:hover {
+  border-color: #1a1a1a;
+}
+
+.pagination-btn.active {
+  background-color: #1a1a1a;
+  color: #faf8f5;
+  border-color: #1a1a1a;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* 반응형 */
@@ -94,8 +122,8 @@
     padding: 40px 24px;
   }
 
-  .menu-detail-item {
-    grid-template-columns: 1fr;
+  .menu-detail-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
 }
