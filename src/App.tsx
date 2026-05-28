@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Cafe from './pages/Cafe';
 import Flower from './pages/Flower';
 import Coffee from './pages/Coffee';
@@ -9,6 +10,7 @@ import Community from './pages/Community';
 const App = () => {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Cafe />} />
         <Route path="/flower" element={<Flower />} />
