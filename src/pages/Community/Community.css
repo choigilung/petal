@@ -1,0 +1,131 @@
+/* 헤더 */
+.community-header {
+  padding: 100px 48px 64px;
+  border-bottom: 1px solid #e8e2d9;
+}
+
+.community-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.community-title {
+  font-size: 72px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.community-desc {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #555;
+}
+
+/* 문의 폼 */
+.community-form-section {
+  padding: 80px 48px;
+  display: flex;
+  justify-content: center;
+}
+
+.community-form {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #999;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-bottom: 1px solid #e8e2d9;
+  background: transparent;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-bottom-color: #1a1a1a;
+}
+
+.form-input::placeholder {
+  color: #ccc;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-bottom: 1px solid #e8e2d9;
+  background: transparent;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: #1a1a1a;
+  outline: none;
+  resize: none;
+  transition: border-color 0.2s;
+}
+
+.form-textarea:focus {
+  border-bottom-color: #1a1a1a;
+}
+
+.form-textarea::placeholder {
+  color: #ccc;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 18px;
+  background-color: #1a1a1a;
+  color: #faf8f5;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.form-submit:hover {
+  opacity: 0.7;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .community-header {
+    padding: 64px 24px 40px;
+  }
+
+  .community-title {
+    font-size: 40px;
+  }
+
+  .community-form-section {
+    padding: 48px 24px;
+  }
+}
