@@ -14,6 +14,7 @@ import Beverage from './pages/Cafe/Menu/Beverage';
 import Dessert from './pages/Cafe/Menu/Dessert';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Admin/Dashboard';
+import MenuManage from './pages/Admin/MenuManage';
 const App = () => {
   return (
     <BrowserRouter>
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/community" element={<Community />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/menu" element={<MenuManage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
