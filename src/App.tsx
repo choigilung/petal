@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Cafe from './pages/Cafe';
 import Flower from './pages/Flower';
 import Coffee from './pages/Coffee';
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/crew" element={<Crew />} />
         <Route path="/community" element={<Community />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
