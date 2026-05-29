@@ -24,6 +24,7 @@ const MenuManage = () => {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -73,6 +74,11 @@ const MenuManage = () => {
     await deleteDoc(doc(db, 'menu', id));
     fetchItems();
   };
+
+  const filteredItems = (cat: string) =>
+    items
+      .filter((item) => item.category === cat)
+      .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <main className="menu-manage">
@@ -140,12 +146,21 @@ const MenuManage = () => {
 
       {/* 메뉴 리스트 */}
       <section className="manage-list">
-        <h2 className="manage-form-title">메뉴 목록</h2>
+        <div className="manage-list-header">
+          <h2 className="manage-form-title">메뉴 목록</h2>
+          <input
+            className="manage-search-input"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="메뉴 검색"
+          />
+        </div>
         {CATEGORIES.map((cat) => (
           <div key={cat} className="manage-category">
             <p className="manage-category-title">{cat}</p>
             <div className="manage-grid">
-              {items.filter((item) => item.category === cat).map((item) => (
+              {filteredItems(cat).map((item) => (
                 <div className="manage-item" key={item.id}>
                   <img src={item.imageUrl} alt={item.name} className="manage-image" />
                   <p className="manage-item-name">{item.name}</p>
