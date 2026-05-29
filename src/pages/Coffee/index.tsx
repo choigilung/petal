@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './Coffee.css';
-import coffeeHero from '../../assets/coffee/coffeehero1.jpg';
 
 interface BeanItem {
   id: string;
@@ -29,7 +28,7 @@ interface SiteImage {
 const Coffee = () => {
   const [beans, setBeans] = useState<BeanItem[]>([]);
   const [monthly, setMonthly] = useState<MonthlyItem | null>(null);
-  const [heroImage, setHeroImage] = useState<string>(coffeeHero);
+  const [heroImage, setHeroImage] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +54,7 @@ const Coffee = () => {
     <main className="coffee">
       {/* 히어로 섹션 */}
       <section className="coffee-hero">
-        <img src={heroImage} alt="커피" className="coffee-hero-image" />
+        {heroImage && <img src={heroImage} alt="커피" className="coffee-hero-image" />}
         <div className="coffee-hero-text">
           <p className="coffee-hero-sub">COFFEE</p>
           <h1 className="coffee-hero-title">OUR<br />COFFEE</h1>

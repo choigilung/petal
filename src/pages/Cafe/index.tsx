@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './Cafe.css';
-import cafeHero from '../../assets/cafe/outside1.jpg';
-import cafeSpace from '../../assets/cafe/space_1.jpg';
 
 interface MenuItem {
   id: string;
@@ -23,8 +21,8 @@ const CATEGORIES = ['DRIP', 'BLEND', 'TEA', 'BEVERAGE', 'DESSERT'];
 
 const Cafe = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
-  const [heroImage, setHeroImage] = useState<string>(cafeHero);
-  const [spaceImage, setSpaceImage] = useState<string>(cafeSpace);
+  const [heroImage, setHeroImage] = useState<string>('');
+  const [spaceImage, setSpaceImage] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,10 +32,10 @@ const Cafe = () => {
 
       const imageSnapshot = await getDocs(collection(db, 'siteImages'));
       const images = imageSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as SiteImage));
-      
+
       const hero = images.find((img) => img.key === 'cafe-hero');
       const space = images.find((img) => img.key === 'cafe-space');
-      
+
       if (hero) setHeroImage(hero.imageUrl);
       if (space) setSpaceImage(space.imageUrl);
     };
@@ -48,7 +46,7 @@ const Cafe = () => {
     <main className="cafe">
       {/* 히어로 섹션 */}
       <section className="hero">
-        <img src={heroImage} alt="카페 외관" className="hero-image" />
+        {heroImage && <img src={heroImage} alt="카페 외관" className="hero-image" />}
         <div className="hero-text">
           <p className="hero-sub">2F CAFE</p>
           <h1 className="hero-title">PETAL<br />ENTRECASSE</h1>
@@ -58,7 +56,7 @@ const Cafe = () => {
 
       {/* 공간 소개 섹션 */}
       <section className="space">
-        <img src={spaceImage} alt="카페 공간" className="space-image" />
+        {spaceImage && <img src={spaceImage} alt="카페 공간" className="space-image" />}
         <div className="space-text">
           <p className="space-label">OUR SPACE</p>
           <h2 className="space-title">꽃향기 가득한<br />2층 카페</h2>

@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './Flower.css';
-import flowerHero from '../../assets/flower/flowerout1.jpg';
-import flowerSpace from '../../assets/flower/flower_space1.jpg';
 
 interface FlowerItem {
   id: string;
@@ -24,8 +22,8 @@ const Flower = () => {
   const [flowers, setFlowers] = useState<FlowerItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const [heroImage, setHeroImage] = useState<string>(flowerHero);
-  const [spaceImage, setSpaceImage] = useState<string>(flowerSpace);
+  const [heroImage, setHeroImage] = useState<string>('');
+  const [spaceImage, setSpaceImage] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +57,7 @@ const Flower = () => {
     <main className="flower">
       {/* 히어로 섹션 */}
       <section className="flower-hero">
-        <img src={heroImage} alt="플라워샵 외관" className="flower-hero-image" />
+        {heroImage && <img src={heroImage} alt="플라워샵 외관" className="flower-hero-image" />}
         <div className="flower-hero-text">
           <p className="flower-hero-sub">1F FLOWER</p>
           <h1 className="flower-hero-title">PETAL<br />FLOWER</h1>
@@ -77,7 +75,7 @@ const Flower = () => {
             계절마다 바뀌는 다양한 꽃들을 만나보세요.
           </p>
         </div>
-        <img src={spaceImage} alt="플라워샵 공간" className="flower-space-image" />
+        {spaceImage && <img src={spaceImage} alt="플라워샵 공간" className="flower-space-image" />}
       </section>
 
       {/* 꽃 종류 섹션 */}
