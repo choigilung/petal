@@ -9,6 +9,8 @@ interface MenuItem {
   name: string;
   category: string;
   imageUrl: string;
+  price: string;
+  description: string;
 }
 
 interface MenuDetailProps {
@@ -56,6 +58,8 @@ const MenuDetail = ({ category }: MenuDetailProps) => {
             <div className="menu-detail-item" key={item.id}>
               <img src={item.imageUrl} alt={item.name} className="menu-detail-image" />
               <p className="menu-detail-name">{item.name}</p>
+              {item.price && <p className="menu-detail-price">{item.price}</p>}
+              {item.description && <p className="menu-detail-desc">{item.description}</p>}
             </div>
           ))}
         </div>

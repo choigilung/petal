@@ -9,6 +9,8 @@ interface MenuItem {
   name: string;
   category: string;
   imageUrl: string;
+  price: string;
+  description: string;
 }
 
 const CATEGORIES = ['DRIP', 'BLEND', 'TEA', 'BEVERAGE', 'DESSERT'];
@@ -18,6 +20,8 @@ const MenuManage = () => {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [name, setName] = useState('');
   const [category, setCategory] = useState('DRIP');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -52,8 +56,10 @@ const MenuManage = () => {
     setLoading(true);
     try {
       const imageUrl = await uploadToCloudinary(image);
-      await addDoc(collection(db, 'menu'), { name, category, imageUrl });
+      await addDoc(collection(db, 'menu'), { name, category, imageUrl, price, description });
       setName('');
+      setPrice('');
+      setDescription('');
       setImage(null);
       fetchItems();
     } catch (err) {
@@ -98,6 +104,26 @@ const MenuManage = () => {
             />
           </div>
           <div className="manage-form-group">
+            <label className="manage-label">가격</label>
+            <input
+              className="manage-input"
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="예: 6,500원"
+            />
+          </div>
+          <div className="manage-form-group">
+            <label className="manage-label">설명</label>
+            <input
+              className="manage-input"
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="메뉴 설명 입력"
+            />
+          </div>
+          <div className="manage-form-group">
             <label className="manage-label">사진</label>
             <input
               className="manage-input"
@@ -123,6 +149,7 @@ const MenuManage = () => {
                 <div className="manage-item" key={item.id}>
                   <img src={item.imageUrl} alt={item.name} className="manage-image" />
                   <p className="manage-item-name">{item.name}</p>
+                  {item.price && <p className="manage-item-price">{item.price}</p>}
                   <button className="manage-delete-btn" onClick={() => handleDelete(item.id)}>삭제</button>
                 </div>
               ))}

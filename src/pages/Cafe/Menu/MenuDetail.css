@@ -127,3 +127,17 @@
     gap: 24px;
   }
 }
+
+.menu-detail-price {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a1a1a;
+  letter-spacing: 0.05em;
+}
+
+.menu-detail-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.6;
+}
