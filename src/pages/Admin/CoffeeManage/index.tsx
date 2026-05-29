@@ -25,14 +25,12 @@ const CoffeeManage = () => {
   const [beans, setBeans] = useState<BeanItem[]>([]);
   const [monthly, setMonthly] = useState<MonthlyItem | null>(null);
 
-  // 원두 추가 폼
   const [beanName, setBeanName] = useState('');
   const [beanRegion, setBeanRegion] = useState('');
   const [beanFlavor, setBeanFlavor] = useState('');
   const [beanImage, setBeanImage] = useState<File | null>(null);
   const [beanLoading, setBeanLoading] = useState(false);
 
-  // 이달의 커피 폼
   const [monthlyName, setMonthlyName] = useState('');
   const [monthlyDesc, setMonthlyDesc] = useState('');
   const [monthlyFlavor, setMonthlyFlavor] = useState('');
@@ -78,7 +76,8 @@ const CoffeeManage = () => {
   };
 
   const handleAddBean = async () => {
-    if (!beanName || !beanImage) return alert('이름과 사진을 입력해 주세요.');
+    if (!beanName) return alert('이름을 입력해 주세요.');
+    if (!beanImage) return alert('사진을 선택해 주세요.');
     setBeanLoading(true);
     try {
       const imageUrl = await uploadToCloudinary(beanImage);
@@ -173,7 +172,15 @@ const CoffeeManage = () => {
           </div>
           <div className="manage-form-group">
             <label className="manage-label">사진</label>
-            <input className="manage-input" type="file" accept="image/*" onChange={(e) => setBeanImage(e.target.files?.[0] || null)} />
+            <input
+              className="manage-input"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                setBeanImage(e.target.files?.[0] || null);
+                e.target.value = '';
+              }}
+            />
           </div>
         </div>
         <button className="manage-add-btn" onClick={handleAddBean} disabled={beanLoading}>

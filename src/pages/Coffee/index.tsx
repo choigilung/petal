@@ -20,9 +20,16 @@ interface MonthlyItem {
   imageUrl: string;
 }
 
+interface SiteImage {
+  id: string;
+  key: string;
+  imageUrl: string;
+}
+
 const Coffee = () => {
   const [beans, setBeans] = useState<BeanItem[]>([]);
   const [monthly, setMonthly] = useState<MonthlyItem | null>(null);
+  const [heroImage, setHeroImage] = useState<string>(coffeeHero);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +42,11 @@ const Coffee = () => {
         const data = { id: monthlySnapshot.docs[0].id, ...monthlySnapshot.docs[0].data() } as MonthlyItem;
         setMonthly(data);
       }
+
+      const imageSnapshot = await getDocs(collection(db, 'siteImages'));
+      const images = imageSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as SiteImage));
+      const hero = images.find((img) => img.key === 'coffee-hero');
+      if (hero) setHeroImage(hero.imageUrl);
     };
     fetchData();
   }, []);
@@ -43,7 +55,7 @@ const Coffee = () => {
     <main className="coffee">
       {/* 히어로 섹션 */}
       <section className="coffee-hero">
-        <img src={coffeeHero} alt="커피" className="coffee-hero-image" />
+        <img src={heroImage} alt="커피" className="coffee-hero-image" />
         <div className="coffee-hero-text">
           <p className="coffee-hero-sub">COFFEE</p>
           <h1 className="coffee-hero-title">OUR<br />COFFEE</h1>

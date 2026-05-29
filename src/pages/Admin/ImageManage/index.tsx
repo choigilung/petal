@@ -16,6 +16,7 @@ const IMAGE_KEYS = [
   { key: 'cafe-space', label: '카페 공간 사진' },
   { key: 'flower-hero', label: '플라워 히어로 사진' },
   { key: 'flower-space', label: '플라워 공간 사진' },
+  { key: 'coffee-hero', label: '커피 히어로 사진' },
 ];
 
 const ImageManage = () => {
