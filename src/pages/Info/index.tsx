@@ -16,7 +16,7 @@ const Info = () => {
           {/* 전화번호 */}
           <div className="info-block">
             <p className="info-block-label">TEL</p>
-            <p className="info-block-value">055-609-4448</p>
+            <p className="info-block-value">0507-1496-4462</p>
           </div>
 
           {/* 주소 */}
@@ -29,8 +29,8 @@ const Info = () => {
           <div className="info-block">
             <p className="info-block-label">HOURS</p>
             <p className="info-block-value">
-              TUE — SUN　10:30 — 22:00<br />
-              MON 정기휴무
+              TUE — SUN　11:30 — 22:00<br />
+              MON 12:00 - 22:00
             </p>
           </div>
 
