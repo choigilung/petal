@@ -18,6 +18,7 @@ import MenuManage from './pages/Admin/MenuManage';
 import FlowerManage from './pages/Admin/FlowerManage';
 import CrewManage from './pages/Admin/CrewManage';
 import CommunityManage from './pages/Admin/CommunityManage';
+import CoffeeManage from './pages/Admin/CoffeeManage';
 const App = () => {
   return (
     <BrowserRouter>
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/admin/flower" element={<FlowerManage />} />
         <Route path="/admin/crew" element={<CrewManage />} />
         <Route path="/admin/community" element={<CommunityManage />} />
+        <Route path="/admin/coffee" element={<CoffeeManage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

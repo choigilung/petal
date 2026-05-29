@@ -1,0 +1,23 @@
+.coffee-manage {
+  min-height: 100vh;
+  padding: 64px 48px;
+  background-color: #faf8f5;
+}
+
+.manage-textarea {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid #e8e2d9;
+  background: transparent;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: #1a1a1a;
+  outline: none;
+  resize: none;
+  transition: border-color 0.2s;
+}
+
+.manage-textarea:focus {
+  border-bottom-color: #1a1a1a;
+}

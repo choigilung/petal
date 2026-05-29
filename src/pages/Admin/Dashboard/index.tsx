@@ -44,6 +44,12 @@ const Dashboard = () => {
           <p className="dashboard-card-desc">꽃 사진 추가 / 삭제</p>
         </div>
 
+        <div className="dashboard-card" onClick={() => navigate('/admin/coffee')}>
+          <p className="dashboard-card-label">COFFEE</p>
+          <h2 className="dashboard-card-title">커피 관리</h2>
+          <p className="dashboard-card-desc">이달의 커피 / 원두 / 히어로 사진 관리</p>
+        </div>
+
         <div className="dashboard-card" onClick={() => navigate('/admin/crew')}>
           <p className="dashboard-card-label">CREW</p>
           <h2 className="dashboard-card-title">크루 관리</h2>
