@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../firebase';
 import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import emailjs from '@emailjs/browser';
 import './CommunityManage.css';
 
 interface Notice {
@@ -75,11 +76,29 @@ const CommunityManage = () => {
     fetchNotices();
   };
 
-  const handleAnswer = async (id: string) => {
-    const answer = answerMap[id];
+  const handleAnswer = async (inquiry: Inquiry) => {
+    const answer = answerMap[inquiry.id];
     if (!answer) return alert('답변을 입력해 주세요.');
-    await updateDoc(doc(db, 'inquiries', id), { answer });
-    fetchInquiries();
+    try {
+      await updateDoc(doc(db, 'inquiries', inquiry.id), { answer });
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          customer_name: inquiry.name,
+          customer_email: inquiry.email,
+          inquiry_content: inquiry.content,
+          answer: answer,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      alert('답변이 등록됐고 고객에게 이메일이 발송됐어요!');
+      fetchInquiries();
+    } catch (err) {
+      alert('답변 등록 중 오류가 발생했습니다.');
+    }
   };
 
   return (
@@ -157,7 +176,7 @@ const CommunityManage = () => {
                     value={answerMap[inquiry.id] || ''}
                     onChange={(e) => setAnswerMap({ ...answerMap, [inquiry.id]: e.target.value })}
                   />
-                  <button className="manage-add-btn" onClick={() => handleAnswer(inquiry.id)}>
+                  <button className="manage-add-btn" onClick={() => handleAnswer(inquiry)}>
                     답변 등록
                   </button>
                 </div>
