@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../firebase';
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, doc, Timestamp } from 'firebase/firestore';
 import './CrewManage.css';
 
 interface CrewItem {
@@ -10,6 +10,7 @@ interface CrewItem {
   role: string;
   desc: string;
   imageUrl: string;
+  createdAt?: Timestamp;
 }
 
 const CrewManage = () => {
@@ -52,7 +53,10 @@ const CrewManage = () => {
     setLoading(true);
     try {
       const imageUrl = await uploadToCloudinary(image);
-      await addDoc(collection(db, 'crew'), { name, role, desc, imageUrl });
+      await addDoc(collection(db, 'crew'), {
+        name, role, desc, imageUrl,
+        createdAt: Timestamp.now()
+      });
       setName('');
       setRole('');
       setDesc('');
@@ -68,6 +72,12 @@ const CrewManage = () => {
     if (!window.confirm('삭제하시겠습니까?')) return;
     await deleteDoc(doc(db, 'crew', id));
     fetchItems();
+  };
+
+  const formatDate = (timestamp?: Timestamp) => {
+    if (!timestamp) return '';
+    const date = timestamp.toDate();
+    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
   };
 
   return (
@@ -136,6 +146,9 @@ const CrewManage = () => {
               <p className="manage-item-role">{item.role}</p>
               <p className="manage-item-name">{item.name}</p>
               <p className="manage-item-desc">{item.desc}</p>
+              {item.createdAt && (
+                <p className="manage-item-date">{formatDate(item.createdAt)}</p>
+              )}
               <button className="manage-delete-btn" onClick={() => handleDelete(item.id)}>삭제</button>
             </div>
           ))}

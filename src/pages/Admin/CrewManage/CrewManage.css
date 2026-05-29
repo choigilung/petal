@@ -171,3 +171,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.manage-item-date {
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 0.1em;
+}
