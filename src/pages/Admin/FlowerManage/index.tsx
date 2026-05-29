@@ -9,6 +9,7 @@ interface FlowerItem {
   name: string;
   subName: string;
   imageUrl: string;
+  description?: string;
 }
 
 const FlowerManage = () => {
@@ -17,6 +18,7 @@ const FlowerManage = () => {
   const [name, setName] = useState('');
   const [subName, setSubName] = useState('');
   const [image, setImage] = useState<File | null>(null);
+  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -50,9 +52,10 @@ const FlowerManage = () => {
     setLoading(true);
     try {
       const imageUrl = await uploadToCloudinary(image);
-      await addDoc(collection(db, 'flowers'), { name, subName, imageUrl });
+      await addDoc(collection(db, 'flowers'), { name, subName, imageUrl, description });
       setName('');
       setSubName('');
+      setDescription('');
       setImage(null);
       fetchItems();
     } catch (err) {
@@ -89,13 +92,13 @@ const FlowerManage = () => {
             />
           </div>
           <div className="manage-form-group">
-            <label className="manage-label">꽃 이름 (영문)</label>
+            <label className="manage-label">설명 (선택)</label>
             <input
               className="manage-input"
               type="text"
-              value={subName}
-              onChange={(e) => setSubName(e.target.value)}
-              placeholder="예: Rose"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="꽃 설명 입력 (선택사항)"
             />
           </div>
           <div className="manage-form-group">
