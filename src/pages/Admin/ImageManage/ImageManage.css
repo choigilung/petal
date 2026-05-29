@@ -1,0 +1,56 @@
+.image-manage {
+  min-height: 100vh;
+  padding: 64px 48px;
+  background-color: #faf8f5;
+}
+
+.image-manage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+}
+
+.image-manage-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.image-manage-preview {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.image-manage-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #e8e2d9;
+}
+
+.image-manage-upload-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: #1a1a1a;
+  color: #faf8f5;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-align: center;
+}
+
+.image-manage-upload-btn:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .image-manage {
+    padding: 40px 24px;
+  }
+
+  .image-manage-grid {
+    grid-template-columns: 1fr;
+  }
+}

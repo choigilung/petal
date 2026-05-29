@@ -122,6 +122,11 @@ const Dashboard = () => {
           <h2 className="dashboard-card-title">커뮤니티 관리</h2>
           <p className="dashboard-card-desc">공지사항 작성 / 문의 답변</p>
         </div>
+        <div className="dashboard-card" onClick={() => navigate('/admin/images')}>
+          <p className="dashboard-card-label">IMAGES</p>
+          <h2 className="dashboard-card-title">사진 관리</h2>
+          <p className="dashboard-card-desc">히어로 / 공간 대표사진 변경</p>
+        </div>
       </div>
     </main>
   );

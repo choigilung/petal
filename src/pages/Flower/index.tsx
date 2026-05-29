@@ -12,20 +12,37 @@ interface FlowerItem {
   imageUrl: string;
 }
 
+interface SiteImage {
+  id: string;
+  key: string;
+  imageUrl: string;
+}
+
 const ITEMS_PER_PAGE = 6;
 
 const Flower = () => {
   const [flowers, setFlowers] = useState<FlowerItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
+  const [heroImage, setHeroImage] = useState<string>(flowerHero);
+  const [spaceImage, setSpaceImage] = useState<string>(flowerSpace);
 
   useEffect(() => {
-    const fetchFlowers = async () => {
+    const fetchData = async () => {
       const snapshot = await getDocs(collection(db, 'flowers'));
       const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as FlowerItem));
       setFlowers(data);
+
+      const imageSnapshot = await getDocs(collection(db, 'siteImages'));
+      const images = imageSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as SiteImage));
+
+      const hero = images.find((img) => img.key === 'flower-hero');
+      const space = images.find((img) => img.key === 'flower-space');
+
+      if (hero) setHeroImage(hero.imageUrl);
+      if (space) setSpaceImage(space.imageUrl);
     };
-    fetchFlowers();
+    fetchData();
   }, []);
 
   const filteredFlowers = flowers.filter((flower) =>
@@ -42,7 +59,7 @@ const Flower = () => {
     <main className="flower">
       {/* 히어로 섹션 */}
       <section className="flower-hero">
-        <img src={flowerHero} alt="플라워샵 외관" className="flower-hero-image" />
+        <img src={heroImage} alt="플라워샵 외관" className="flower-hero-image" />
         <div className="flower-hero-text">
           <p className="flower-hero-sub">1F FLOWER</p>
           <h1 className="flower-hero-title">PETAL<br />FLOWER</h1>
@@ -60,7 +77,7 @@ const Flower = () => {
             계절마다 바뀌는 다양한 꽃들을 만나보세요.
           </p>
         </div>
-        <img src={flowerSpace} alt="플라워샵 공간" className="flower-space-image" />
+        <img src={spaceImage} alt="플라워샵 공간" className="flower-space-image" />
       </section>
 
       {/* 꽃 종류 섹션 */}

@@ -13,25 +13,42 @@ interface MenuItem {
   imageUrl: string;
 }
 
+interface SiteImage {
+  id: string;
+  key: string;
+  imageUrl: string;
+}
+
 const CATEGORIES = ['DRIP', 'BLEND', 'TEA', 'BEVERAGE', 'DESSERT'];
 
 const Cafe = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [heroImage, setHeroImage] = useState<string>(cafeHero);
+  const [spaceImage, setSpaceImage] = useState<string>(cafeSpace);
 
   useEffect(() => {
-    const fetchMenu = async () => {
-      const snapshot = await getDocs(collection(db, 'menu'));
-      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as MenuItem));
-      setMenuItems(data);
+    const fetchData = async () => {
+      const menuSnapshot = await getDocs(collection(db, 'menu'));
+      const menuData = menuSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as MenuItem));
+      setMenuItems(menuData);
+
+      const imageSnapshot = await getDocs(collection(db, 'siteImages'));
+      const images = imageSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as SiteImage));
+      
+      const hero = images.find((img) => img.key === 'cafe-hero');
+      const space = images.find((img) => img.key === 'cafe-space');
+      
+      if (hero) setHeroImage(hero.imageUrl);
+      if (space) setSpaceImage(space.imageUrl);
     };
-    fetchMenu();
+    fetchData();
   }, []);
 
   return (
     <main className="cafe">
       {/* 히어로 섹션 */}
       <section className="hero">
-        <img src={cafeHero} alt="카페 외관" className="hero-image" />
+        <img src={heroImage} alt="카페 외관" className="hero-image" />
         <div className="hero-text">
           <p className="hero-sub">2F CAFE</p>
           <h1 className="hero-title">PETAL<br />ENTRECASSE</h1>
@@ -41,7 +58,7 @@ const Cafe = () => {
 
       {/* 공간 소개 섹션 */}
       <section className="space">
-        <img src={cafeSpace} alt="카페 공간" className="space-image" />
+        <img src={spaceImage} alt="카페 공간" className="space-image" />
         <div className="space-text">
           <p className="space-label">OUR SPACE</p>
           <h2 className="space-title">꽃향기 가득한<br />2층 카페</h2>
