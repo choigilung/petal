@@ -141,3 +141,20 @@
   color: #555;
   line-height: 1.6;
 }
+
+.menu-search {
+  padding: 0 48px 32px;
+}
+
+.menu-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid #1a1a1a;
+  background: transparent;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  letter-spacing: 0.05em;
+}

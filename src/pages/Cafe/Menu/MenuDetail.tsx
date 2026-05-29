@@ -22,6 +22,7 @@ const ITEMS_PER_PAGE = 9;
 const MenuDetail = ({ category }: MenuDetailProps) => {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -33,8 +34,11 @@ const MenuDetail = ({ category }: MenuDetailProps) => {
     fetchItems();
   }, [category]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const currentItems = items.slice(
+  const filteredItems = items.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
+  const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+  const currentItems = filteredItems.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -47,6 +51,17 @@ const MenuDetail = ({ category }: MenuDetailProps) => {
         <p className="menu-detail-label">2F CAFE</p>
         <h1 className="menu-detail-title">{category}</h1>
       </section>
+
+      {/* 검색 */}
+      <div className="menu-search">
+        <input
+          className="menu-search-input"
+          type="text"
+          value={search}
+          onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
+          placeholder="메뉴 검색"
+        />
+      </div>
 
       {/* 메뉴 그리드 */}
       <section className="menu-detail-list">
