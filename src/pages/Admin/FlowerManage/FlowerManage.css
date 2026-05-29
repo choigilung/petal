@@ -165,3 +165,23 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.manage-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.manage-search-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #1a1a1a;
+  background: transparent;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  letter-spacing: 0.05em;
+}

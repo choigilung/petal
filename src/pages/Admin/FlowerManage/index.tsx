@@ -18,6 +18,7 @@ const FlowerManage = () => {
   const [subName, setSubName] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -67,6 +68,11 @@ const FlowerManage = () => {
     fetchItems();
   };
 
+  const filteredItems = items.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase()) ||
+    item.subName.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <main className="flower-manage">
       <div className="manage-header">
@@ -115,9 +121,21 @@ const FlowerManage = () => {
 
       {/* 꽃 리스트 */}
       <section className="manage-list">
-        <h2 className="manage-form-title">꽃 목록</h2>
+        <div className="manage-list-header">
+          <h2 className="manage-form-title">꽃 목록</h2>
+          <input
+            className="manage-search-input"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="꽃 검색"
+          />
+        </div>
         <div className="manage-grid">
-          {items.map((item) => (
+          {filteredItems.length === 0 && (
+            <p className="empty-text">검색 결과가 없어요.</p>
+          )}
+          {filteredItems.map((item) => (
             <div className="manage-item" key={item.id}>
               <img src={item.imageUrl} alt={item.name} className="manage-image" />
               <p className="manage-item-name">{item.name}</p>
