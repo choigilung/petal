@@ -17,6 +17,7 @@ const ITEMS_PER_PAGE = 6;
 const Flower = () => {
   const [flowers, setFlowers] = useState<FlowerItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchFlowers = async () => {
@@ -27,8 +28,12 @@ const Flower = () => {
     fetchFlowers();
   }, []);
 
-  const totalPages = Math.ceil(flowers.length / ITEMS_PER_PAGE);
-  const currentFlowers = flowers.slice(
+  const filteredFlowers = flowers.filter((flower) =>
+    flower.name.toLowerCase().includes(search.toLowerCase()) ||
+    flower.subName.toLowerCase().includes(search.toLowerCase())
+  );
+  const totalPages = Math.ceil(filteredFlowers.length / ITEMS_PER_PAGE);
+  const currentFlowers = filteredFlowers.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -62,7 +67,22 @@ const Flower = () => {
       <section className="flower-types">
         <p className="flower-types-label">OUR FLOWERS</p>
         <h2 className="flower-types-title">FLOWERS</h2>
+
+        {/* 검색 */}
+        <div className="flower-search">
+          <input
+            className="flower-search-input"
+            type="text"
+            value={search}
+            onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
+            placeholder="꽃 검색"
+          />
+        </div>
+
         <div className="flower-grid">
+          {currentFlowers.length === 0 && (
+            <p className="empty-text">검색 결과가 없어요.</p>
+          )}
           {currentFlowers.map((flower) => (
             <div className="flower-item" key={flower.id}>
               <img src={flower.imageUrl} alt={flower.name} className="flower-image" />
