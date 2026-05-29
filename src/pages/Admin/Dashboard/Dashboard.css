@@ -82,3 +82,45 @@
     grid-template-columns: 1fr;
   }
 }
+
+.dashboard-header-btns {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.dashboard-add-admin-btn {
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dashboard-add-admin-btn:hover {
+  background-color: #1a1a1a;
+  color: #faf8f5;
+}
+
+.add-admin-form {
+  padding: 48px;
+  border: 1px solid #e8e2d9;
+  margin-bottom: 48px;
+}
+
+.add-admin-title {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
+}
+
+.add-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
