@@ -144,6 +144,8 @@
 
 .menu-search {
   padding: 0 48px 32px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .menu-search-input {
