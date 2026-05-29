@@ -68,7 +68,7 @@ const MenuDetail = ({ category }: MenuDetailProps) => {
         {currentItems.length === 0 && (
           <p className="empty-text">등록된 메뉴가 없어요.</p>
         )}
-        <div className="menu-detail-grid">
+        <div className="menu-detail-grid" style={{ opacity: 1, transition: 'opacity 0.2s ease' }}>
           {currentItems.map((item) => (
             <div className="menu-detail-item" key={item.id}>
               <img src={item.imageUrl} alt={item.name} className="menu-detail-image" />

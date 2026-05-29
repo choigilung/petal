@@ -160,3 +160,11 @@
   outline: none;
   letter-spacing: 0.05em;
 }
+
+.menu-detail-grid {
+  transition: opacity 0.2s ease;
+}
+
+.menu-detail-item {
+  transition: opacity 0.2s ease;
+}
