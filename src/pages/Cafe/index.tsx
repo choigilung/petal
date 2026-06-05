@@ -48,7 +48,7 @@ const Cafe = () => {
       <section className="hero">
         {heroImage && <img src={heroImage} alt="카페 외관" className="hero-image" />}
         <div className="hero-text">
-          <p className="hero-sub">2F CAFE</p>
+          <p className="hero-sub">CAFE</p>
           <h1 className="hero-title">PETAL<br />ENTRECASSE</h1>
           <p className="hero-desc">꽃과 커피가 만나는 공간</p>
         </div>
@@ -59,9 +59,9 @@ const Cafe = () => {
         {spaceImage && <img src={spaceImage} alt="카페 공간" className="space-image" />}
         <div className="space-text">
           <p className="space-label">OUR SPACE</p>
-          <h2 className="space-title">꽃향기 가득한<br />2층 카페</h2>
+          <h2 className="space-title">꽃향기 가득한<br />카페</h2>
           <p className="space-desc">
-            페탈 옹트라쎄는 1층 플라워샵과 2층 카페로 이루어진
+            페탈 옹트라쎄는 플라워샵과 카페로 이루어진
             복합 문화 공간입니다.
           </p>
         </div>
