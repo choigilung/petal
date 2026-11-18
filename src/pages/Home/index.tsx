@@ -1,17 +1,10 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import type { FlowerItem } from './FlowerRing';
 import './Home.css';
 
 const FlowerRing = lazy(() => import('./FlowerRing'));
-
-const DEFAULT_FLOWERS: FlowerItem[] = [
-  { id: 'rose', name: 'Rose' },
-  { id: 'tulip', name: 'Tulip' },
-  { id: 'lily', name: 'Lily' },
-  { id: 'peony', name: 'Peony' },
-  { id: 'daisy', name: 'Daisy' },
-  { id: 'ranunculus', name: 'Ranunculus' },
-];
 
 const hasWebGL = () => {
   try {
@@ -22,8 +15,17 @@ const hasWebGL = () => {
   }
 };
 
-const Home = ({ flowers = DEFAULT_FLOWERS }: { flowers?: FlowerItem[] }) => {
+const Home = () => {
   const [webgl] = useState(hasWebGL);
+  const [flowers, setFlowers] = useState<FlowerItem[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const snapshot = await getDocs(collection(db, 'flowers'));
+      setFlowers(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as FlowerItem)));
+    };
+    fetchData().catch(console.error);
+  }, []);
 
   return (
     <main className="home">

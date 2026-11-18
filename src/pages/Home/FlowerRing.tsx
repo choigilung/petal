@@ -1,6 +1,6 @@
 import { Suspense, useMemo, useRef } from 'react';
 import type { PointerEvent, RefObject } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -25,6 +25,7 @@ interface Ctrl {
 }
 
 const RADIUS = 3;
+const SPACING = 1.6;
 const AUTO_SPEED = 0.25;
 const IDLE_MS = 2500;
 const COLORS = ['#e8a0a8', '#f3c9a8', '#c9b6e4', '#f0d77a', '#a8d5c2', '#f2b5c9'];
@@ -78,6 +79,8 @@ const Ring = ({ flowers, ctrl }: { flowers: FlowerItem[]; ctrl: RefObject<Ctrl> 
   const group = useRef<THREE.Group>(null);
   const items = useRef<(THREE.Group | null)[]>([]);
   const step = (Math.PI * 2) / Math.max(flowers.length, 1);
+  const radius = Math.max(RADIUS, (flowers.length * SPACING) / (Math.PI * 2));
+  const fit = useThree((s) => Math.min(1, s.size.width / s.size.height / 1.6));
 
   useFrame((_, dt) => {
     const c = ctrl.current;
@@ -110,20 +113,22 @@ const Ring = ({ flowers, ctrl }: { flowers: FlowerItem[]; ctrl: RefObject<Ctrl> 
   });
 
   return (
-    <group ref={group}>
-      {flowers.map((f, i) => (
-        <group
-          key={f.id}
-          ref={(el) => {
-            items.current[i] = el;
-          }}
-          position={[Math.sin(i * step) * RADIUS, 0, Math.cos(i * step) * RADIUS]}
-        >
-          <Suspense fallback={<Placeholder color={COLORS[i % COLORS.length]} />}>
-            {f.modelUrl ? <Model url={f.modelUrl} /> : <Placeholder color={COLORS[i % COLORS.length]} />}
-          </Suspense>
-        </group>
-      ))}
+    <group scale={fit}>
+      <group ref={group} position={[0, 0, RADIUS - radius]}>
+        {flowers.map((f, i) => (
+          <group
+            key={f.id}
+            ref={(el) => {
+              items.current[i] = el;
+            }}
+            position={[Math.sin(i * step) * radius, 0, Math.cos(i * step) * radius]}
+          >
+            <Suspense fallback={<Placeholder color={COLORS[i % COLORS.length]} />}>
+              {f.modelUrl ? <Model url={f.modelUrl} /> : <Placeholder color={COLORS[i % COLORS.length]} />}
+            </Suspense>
+          </group>
+        ))}
+      </group>
     </group>
   );
 };
