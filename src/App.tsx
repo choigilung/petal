@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 import Cafe from './pages/Cafe';
 import Flower from './pages/Flower';
 import Coffee from './pages/Coffee';
@@ -25,7 +26,7 @@ const App = () => {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Cafe />} />
+        <Route path="/" element={<Home />} />
         <Route path="/cafe" element={<Cafe />} />
         <Route path="/cafe/menu/drip" element={<Drip />} />
         <Route path="/cafe/menu/blend" element={<Blend />} />
